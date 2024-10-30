@@ -7,6 +7,8 @@ const chokidar = require('chokidar');
 const {Client, Intents, Collection} = require("discord.js");
 
 const config = require('./config.json');
+require('dotenv').config();
+
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
 })
@@ -135,4 +137,4 @@ console.log()
 console.log(`Loaded ${interactionFiles.length} interactions: \n${client.interactions.map(int => int.interactionIndex).join(', ')}`);
 console.log();
 
-client.login(global.devMode ? "DEV BOT TOKEN" : require("./token.json"));
+client.login(global.devMode ? process.env.DEV_DISCORD_TOKEN : process.env.PROD_DISCORD_TOKEN);
